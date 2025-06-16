@@ -15,4 +15,4 @@ map("n", "<C-q>", ":q<CR>", opts)
 -- Quickly open file explorer (if you install 'nvim-tree')
 --map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
-map("i", "jk", "<ESC>", { desc = "Exit insert mode with JK" })
+map("i", "jj", "<ESC>", { desc = "Exit insert mode with JK" })
