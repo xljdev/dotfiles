@@ -1,0 +1,62 @@
+[env]
+#set TERM variable to support 256 colors
+TERM="xterm-256color"
+
+[window]
+# Startup window dimensions
+dimensions={columns=120,lines=34}
+# Window padding (space around page)
+padding={x=10,y=10}
+# Enable/disable window decorations
+decorations="full" #Options: "full,none"
+
+[font]
+# Main font
+normal={family="JetBrains Mono", style="Regular"}
+# Font size
+size=11.5
+
+[colors.primary]
+background = "#1a1b26" # Deep dark background (bluish-black)
+foreground = "#c0caf5" # Light bluish text
+
+[colors.normal]
+black   = "#15161e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#c0caf5"
+
+[colors.cursor]
+text="CellBackground"
+cursor="CellForeground"
+
+[selection]
+save_to_clipboard=true # Automatically copy selected text to clipboard
+
+[mouse]
+hide_when_typing=true
+
+[terminal]
+osc52="CopyPaste"
+
+# Optinal: Enable Live Reload(reload config without restarting Alacrity)
+[debug]
+log_level="Warn"
+persistent_logging=false
+render_timer=false
+print_events=false
+
