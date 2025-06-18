@@ -12,7 +12,7 @@ decorations="full" #Options: "full,none"
 
 [font]
 # Main font
-normal={family="JetBrains Mono", style="Regular"}
+normal={family="Hack Nerd Font Mono", style="Regular"}
 # Font size
 size=11.5
 
