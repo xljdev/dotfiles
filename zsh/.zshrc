@@ -1,35 +1,51 @@
-# Created by newuser for 5.8.1
-eval "$(starship init zsh)"
-
-# Set Zsh options
+# Zsh options
 setopt autocd           # Change to a directory just by typing its name
 setopt correct          # Auto correct minor typos
 setopt nocaseglob       # Case insensitive globbing
-
-# Export environment variables
-export EDITOR="nvim"
-export VISUAL="nvim"
-export TERM="xterm-256color"
-
-# Starship prompt
-eval "$(starship init zsh)"
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # History control
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
+
+# Environment variables
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERM="xterm-kitty"  # Optimized for Kitty terminal
 
 # Enable autocompletion
 autoload -Uz compinit
 compinit
 
-# Enable command suggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Zsh plugins (install with the commands provided)
+if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
-# Enable syntax highlighting
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# ===============================
+# Development Environment Setup
+# ===============================
+
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Pyenv (Python Version Manager)
+export PATH="$HOME/.pyenv/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# Add local bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # ===============================
 # Aliases - For Productivity
@@ -50,35 +66,35 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gp="git push"
 alias gl="git log --oneline --graph --all"
+alias gd="git diff"
+alias gb="git branch"
 
 # System update
 alias update="sudo apt update && sudo apt upgrade -y"
 
-# Quick edit and reload zsh config
+# Quick edit and reload configs
 alias ez="nvim ~/.zshrc"
 alias rz="source ~/.zshrc"
+alias ek="nvim ~/Projects/dotfiles/kitty/kitty.conf"
 
-# Neovim quick open
+# Editor shortcuts
 alias vim="nvim"
+alias v="nvim"
 
-# Python
+# Python shortcuts
 alias py="python3"
+alias pip="pip3"
 
-# Dotnet
+# .NET shortcuts
 alias dr="dotnet run"
 alias db="dotnet build"
 alias dt="dotnet test"
 
-# Clear terminal
+# Terminal utilities
 alias c="clear"
+alias restart-term="killall kitty && kitty & disown"
 
-# Restart Alacritty easily
-alias restart-term="killall alacritty && alacritty & disown"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# ===============================
+# Starship Prompt (keep at end)
+# ===============================
+eval "$(starship init zsh)"
